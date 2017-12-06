@@ -10,7 +10,6 @@ module Aws
       initializer "aws-sdk-rails.initialize" do |app|
         # Initialization Actions
         Aws::Rails.add_action_mailer_delivery_method
-        Aws::Rails.log_to_rails_logger
       end
     end
 
@@ -27,13 +26,6 @@ module Aws
         self.add_delivery_method(name, Aws::Rails::Mailer, options)
       end
     end
-
-    # Configures the AWS SDK for Ruby's logger to use the Rails logger.
-    def self.log_to_rails_logger
-      Aws.config[:logger] = ::Rails.logger
-      nil
-    end
-
   end
 end
 
